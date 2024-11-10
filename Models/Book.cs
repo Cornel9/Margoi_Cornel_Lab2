@@ -20,5 +20,6 @@ namespace Margoi_Cornel_Lab2.Models
         public int? AuthorID { get; set; }
         [ForeignKey("AuthorID")]
         public Author? Author { get; set; }
+        public ICollection<BookCategory>? BookCategories { get; set; }
     }
 }

@@ -12,7 +12,6 @@
         {
             get { return FirstName + " " + LastName; }
         }
-
         public ICollection<Book>? Books { get; set; }
     }
 }
