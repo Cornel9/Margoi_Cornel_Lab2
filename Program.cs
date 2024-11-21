@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Margoi_Cornel_Lab2.Data;
+using Microsoft.AspNetCore.Identity;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,6 +9,18 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<Margoi_Cornel_Lab2Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Margoi_Cornel_Lab2Context") ?? throw new InvalidOperationException("Connection string 'Margoi_Cornel_Lab2Context' not found.")));
 
+builder.Services.AddDbContext<LibraryIdentityContext>(options =>
+
+options.UseSqlServer(builder.Configuration.GetConnectionString("Margoi_Cornel_Lab2Context") ?? throw new InvalidOperationException("Connection string 'Margoi_Cornel_Lab2Context' not found.")));
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+{
+    options.Password.RequireDigit = true;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = true;
+    options.Password.RequiredLength = 6;
+    options.SignIn.RequireConfirmedAccount = true;})
+    .AddEntityFrameworkStores<LibraryIdentityContext>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
