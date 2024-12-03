@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Margoi_Cornel_Lab2.Data;
 using Margoi_Cornel_Lab2.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Margoi_Cornel_Lab2.Pages.Authors
 {
+    [Authorize(Roles = "Admin")]
     public class EditModel : PageModel
     {
         private readonly Margoi_Cornel_Lab2.Data.Margoi_Cornel_Lab2Context _context;

@@ -10,6 +10,7 @@ using Margoi_Cornel_Lab2.Models;
 
 namespace Margoi_Cornel_Lab2.Pages.Authors
 {
+
     public class DeleteModel : PageModel
     {
         private readonly Margoi_Cornel_Lab2.Data.Margoi_Cornel_Lab2Context _context;
