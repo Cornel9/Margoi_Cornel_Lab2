@@ -1,5 +1,6 @@
-﻿@page "{id:int?}"
-@model Margoi_Cornel_Lab2.Pages.Categories.IndexModel
+﻿﻿
+@page "{id:int?}"
+@model Margoi_Cornel_Lab2.Pages.Publishers.IndexModel
 
 @{
     ViewData["Title"] = "Index";
@@ -14,60 +15,61 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Category[0].CategoryName)
+                @Html.DisplayNameFor(model => model.Publisher[0].PublisherName)
             </th>
             <th></th>
-        </tr>
+        </tr>+
     </thead>
     <tbody>
-        @foreach (var item in Model.CategoryData.Categories)
+        @foreach (var item in Model.PublisherData.Publishers)
         {
             string selectedRow = "";
-            if (item.ID == Model.CategoryID)
+            if (item.ID == Model.PublisherID)
             {
                 selectedRow = "table-success";
             }
-            <tr class="@selectedRow">
-                <td>
-                    @Html.DisplayFor(modelItem => item.CategoryName)
-                </td>
-                <td>
-                    <a asp-page="./Index" asp-route-id="@item.ID">Select</a> |
-                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-                </td>
-            </tr>
+                <tr class="@selectedRow">
+                    <td>
+                    @Html.DisplayFor(modelItem => item.PublisherName)
+                    </td>
+
+                    <td>
+                        <a asp-page="./Index" asp-route-id="@item.ID">Select</a> |
+                        <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
         }
     </tbody>
 </table>
 
-@if (Model.CategoryData.BookCategories != null)
+@if (Model.PublisherData.Books != null)
 {
-    <h3>Books in Selected Categroy</h3>
-    <table class="table">
+        <h3>Books Edited by Selected Publisher</h3>
+        <table class="table">
 
-        @foreach (var item in Model.CategoryData.Categories)
+        @foreach (var item in Model.PublisherData.Publishers)
         {
             string selectedRow = "";
-            if (item.ID == Model.CategoryID)
+            if (item.ID == Model.PublisherID)
             {
                 selectedRow = "table-success";
             }
-            <tr class="@selectedRow">
+                    <tr class="@selectedRow">
 
-                <td>
+                        <td>
                     @{
-                        foreach (var b in item.BookCategories)
+                        foreach (var b in item.Books)
                         {
 
-                            @b.Book.Title @: @b.Book.Author.FullName
+                            @b.Title @: @b.Author.FullName
 
-                            <br />
+                                            <br />
                         }
                     }
-                </td>
-            </tr>
+                        </td>
+                    </tr>
         }
-    </table>
+        </table>
 }
